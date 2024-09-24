@@ -1,0 +1,173 @@
+﻿@model APPModel
+
+
+
+<!-- Layout wrapper -->
+<div class="content-wrapper">
+	<!-- Content -->
+
+	<div class="container-xxl flex-grow-1 container-p-y">
+
+
+		<div class="row">
+			<!-- Form  -->
+			<div class="col-md-6">
+				<div class="card mb-4">
+					<h5 class="card-header">Formu Doldurunuz</h5>
+					<div class="card-body">
+						<form id="basvuruFormu" method="post">
+							<div class="mb-3">
+								<label for="ProjeAdi" class="form-label">PROJE ADI</label>
+								<input type="text"
+									   class="form-control"
+									   name="ProjeAdi"
+									   id="ProjeAdi"
+									   placeholder="---"
+									   aria-describedby="projeAdiHelp" />
+							</div>
+							<div class="mb-3">
+								<label for="BasvuranBirim" class="form-label">BASVURAN BIRIM</label>
+								<select class="form-select" name="BasvuranBirim" id="BasvuranBirim" aria-label="Default select example">
+									<option value="" disabled selected hidden>Seçiniz</option>
+									@foreach (var item in Model.RefData.Where(x => x.Tip == "Basvuran Birim" & x.SilinmeDurumu == true))
+									{
+										<option value="@item.Id">@item.Alttip</option>
+									}
+								</select>
+							</div>
+							<div class="mb-3">
+								<label for="BasvuruYapilanProje" class="form-label">BASVURU YAPILAN PROJE</label>
+								<select class="form-select" name="BasvuruYapilanProje" id="BasvuruYapilanProje" aria-label="Default select example">
+									<option value="" disabled selected hidden>Seçiniz</option>
+									@foreach (var item in Model.RefData.Where(x => x.Tip == "Basvuru Yapilan Proje" & x.SilinmeDurumu == true))
+									{
+										<option value="@item.Id">@item.Alttip</option>
+									}
+								</select>
+							</div>
+							<div class="mb-3">
+								<label for="BasvuruYapilanTur" class="form-label">BASVURU YAPILAN TUR</label>
+								<select class="form-select" name="BasvuruYapilanTur" id="BasvuruYapilanTur" aria-label="Default select example">
+									<option value="" disabled selected hidden>Seçiniz</option>
+									@foreach (var item in Model.RefData.Where(x => x.Tip == "Basvuru Yapilan Tur" & x.SilinmeDurumu == true))
+									{
+										<option value="@item.Id">@item.Alttip</option>
+									}
+								</select>
+							</div>
+							<div class="mb-3">
+								<label for="KatilimciTuru" class="form-label">KATILIMCI TURU</label>
+								<select class="form-select" name="KatilimciTuru" id="KatilimciTuru" aria-label="Default select example">
+									<option value="" disabled selected hidden>Seçiniz</option>
+									@foreach (var item in Model.RefData.Where(x => x.Tip == "Katilimci Turu" & x.SilinmeDurumu == true))
+									{
+										<option value="@item.Id">@item.Alttip</option>
+									}
+								</select>
+							</div>
+							<div class="mb-3">
+								<label for="BasvuruDonemi" class="form-label">BASVURU DONEMI</label>
+								<select class="form-select" name="BasvuruDonemi" id="BasvuruDonemi" aria-label="Default select example">
+									<option value="" disabled selected hidden>Seçiniz</option>
+									@foreach (var item in Model.RefData.Where(x => x.Tip == "Basvuru Donemi" & x.SilinmeDurumu == true))
+									{
+										<option value="@item.Id">@item.Alttip</option>
+									}
+								</select>
+							</div>
+							<div class="mb-3">
+								<label for="BasvuruTarih" class="form-label">BASVURU TARIHI</label>
+								<div class="col-md-14">
+									<input class="form-control" type="date" name="BasvuruTarih" id="BasvuruTarih" />
+								</div>
+							</div>
+							<div class="mb-3">
+								<label for="BasvuruDurumu" class="form-label">BASVURU DURUMU</label>
+								<select class="form-select" name="BasvuruDurumu" id="BasvuruDurumu" aria-label="Default select example">
+									<option value="" disabled selected hidden>Seçiniz</option>
+									@foreach (var item in Model.RefData.Where(x => x.Tip == "Basvuru Durumu" & x.SilinmeDurumu == true))
+									{
+										<option value="@item.Id">@item.Alttip</option>
+									}
+								</select>
+							</div>
+							<div class="mb-3">
+								<label for="AciklamaTarihi" class="form-label">ACIKLAMA TARIHI</label>
+								<div class="col-md-14">
+									<input class="form-control" type="date" name="AciklamaTarihi" id="AciklamaTarihi" />
+								</div>
+							</div>
+							<div class="mb-3">
+								<label for="HibeTutari" class="form-label">HIBE TUTARI</label>
+								<input type="number"
+									   class="form-control"
+									   name="HibeTutari"
+									   id="HibeTutari"
+									   placeholder="---"
+									   pattern="\d*"
+									   oninput="this.value = this.value.replace(/[^0-9]/g, '');" />
+							</div>
+						</form>
+
+						@* <button type="submit" class="btn btn-primary" onclick="ekle()">SEND</button> *@
+						<button type="submit" class="btn btn-primary" onclick="ekle()">Kayıt</button>
+
+
+					</div>
+				</div>
+			</div>
+			<!-- /Form  -->
+		</div>
+	</div>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+
+	function ekle() {
+		debugger;
+		var _data2 = new FormData($('#basvuruFormu').get(0));
+
+
+		$.ajax({
+			url: '@Url.Action("SaveData", "Home")',
+			type: 'POST',
+			data: _data2,
+			contentType: false,
+			processData: false,
+			success: function (response) {
+				if (response.success) {
+					alert('Data saved successfully!');
+				} else {
+					alert('An error occurred while saving data.');
+				}
+			},
+			error: function () {
+				alert('There was an error processing your request.');
+			}
+		});
+	}
+</script>
+
+
+
+<!-- Core JS -->
+<!-- build:js assets/vendor/js/core.js -->
+<script src="../assets/vendor/libs/jquery/jquery.js"></script>
+<script src="../assets/vendor/libs/popper/popper.js"></script>
+<script src="../assets/vendor/js/bootstrap.js"></script>
+<script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+
+<script src="../assets/vendor/js/menu.js"></script>
+<!-- endbuild -->
+<!-- Vendors JS -->
+<script src="../assets/vendor/libs/apex-charts/apexcharts.js"></script>
+
+<!-- Main JS -->
+<script src="../assets/js/main.js"></script>
+
+<!-- Page JS -->
+<script src="../assets/js/dashboards-analytics.js"></script>
+

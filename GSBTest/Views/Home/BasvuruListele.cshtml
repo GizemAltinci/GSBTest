@@ -1,0 +1,205 @@
+﻿@{
+    ViewBag.Title = "Başvuru Listele";
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+
+@model FilteredBasvuru
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <div class="row">
+        <div class="card">
+            <h5 class="card-header">Başvuru Filtrele</h5>
+            <div class="table-responsive text-nowrap">
+                <table class="table">
+                    @* form tagı açmadık *@
+                    @using (Html.BeginForm("BasvuruListele", "Home", FormMethod.Get))
+                    {
+                        <div class="row mb-3">
+
+                            
+
+                            <div class="col-md-3">
+                                <label for="ProjeAdi" class="form-label">PEOJE ADI</label>
+                                <input type="text" class="form-control" name="ProjeAdi" id="ProjeAdi" placeholder="---" value="@Model.ProjeAdi" />
+                            </div>
+
+                            <div class="col-md-3">
+                                <label for="BasvuranBirim" class="form-label">BASVURAN BIRIM</label>
+                                <select class="form-select" name="BasvuranBirim" id="BasvuranBirim" aria-label="Default select example" value="@Model.BasvuranBirim">
+                                    <option value="" disabled selected hidden>Seçiniz</option>
+                                    @foreach (var item in Model.RefData.Where(x => x.Tip == "Basvuran Birimi" && x.SilinmeDurumu == true))
+                                    {
+                                        <option value="@item.Id">@item.Alttip</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="BasvuruYapilanProje" class="form-label">BASVURU YAPILAN PROJE</label>
+                                <select class="form-select" name="BasvuruYapilanProje" id="BasvuruYapilanProje" aria-label="Default select example" value="@Model.BasvuruYapilanTur">
+                                    <option value="" disabled selected hidden>Seçiniz</option>
+                                    @foreach (var item in Model.RefData.Where(x => x.Tip == "Basvuru Yapilan Proje" & x.SilinmeDurumu == true))
+                                    {
+                                        <option value="@item.Id">@item.Alttip</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="BasvuruYapilanTur" class="form-label">BASVURU YAPILAN TUR</label>
+                                <select class="form-select" name="BasvuruYapilanTur" id="BasvuruYapilanTur" aria-label="Default select example" value="@Model.BasvuruYapilanProje">
+                                    <option value="" disabled selected hidden>Seçiniz</option>
+                                    @foreach (var item in Model.RefData.Where(x => x.Tip == "Basvuru Yapilan Tur" & x.SilinmeDurumu == true))
+                                    {
+                                        <option value="@item.Id">@item.Alttip</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                        
+                            <div class="col-md-3">
+                                <label for="KatilimciTuru" class="form-label">KATILIMCI TURU</label>
+                                <select class="form-select" name="KatilimciTuru" id="KatilimciTuru" aria-label="Default select example" value="@Model.KatilimciTuru">
+                                    <option value="" disabled selected hidden>Seçiniz</option>
+                                    @foreach (var item in Model.RefData.Where(x => x.Tip == "Katilimci Turu" & x.SilinmeDurumu == true))
+                                    {
+                                        <option value="@item.Id">@item.Alttip</option>
+
+                                    }
+                                </select>
+                            </div>
+                        
+                            <div class="col-md-3">
+                                <label for="BasvuruDonemi" class="form-label">BASVURU DONEMI</label>
+                                <select class="form-select" name="BasvuruDonemi" id="BasvuruDonemi" aria-label="Default select example" value="@Model.BasvuruDonemi">
+                                    <option value="" disabled selected hidden>Seçiniz</option>
+                                    @foreach (var item in Model.RefData.Where(x => x.Tip == "Basvuru Donemi" & x.SilinmeDurumu == true))
+                                    {
+                                        <option value="@item.Id">@item.Alttip</option>
+                                    }
+                                </select>
+                            </div>
+                        
+
+                            <div class="col-md-3">
+                                <label for="BasvuruTarih" class="form-label">BASVURU TARIHI</label>
+                                <input class="form-control" type="date" name="BasvuruTarih" id="BasvuruTarih" value="@Model.BasvuruTarih" />
+                            </div>
+                        
+                            <div class="col-md-3">
+                                <label for="BasvuruDurumu" class="form-label">BASVURU DURUMU</label>
+                                <select class="form-select" name="BasvuruDurumu" id="BasvuruDurumu" aria-label="Default select example" value="@ViewBag.BasvuruDurumu">
+                                    <option value="" disabled selected hidden>Seçiniz</option>
+                                    @foreach (var item in Model.RefData.Where(x => x.Tip == "Basvuru Durumu" & x.SilinmeDurumu == true))
+                                    {
+                                        <option value="@item.Id">@item.Alttip</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-3">
+                                <label for="AciklamaTarihi" class="form-label">ACIKLAMA TARIHI</label>
+                                <input class="form-control" type="date" name="AciklamaTarihi" id="AciklamaTarihi" value="@Model.AciklamaTarihi" />
+                            </div>
+                            <div class="col-md-3">
+                                <label for="HibeTutari" class="form-label">HIBE TUTARI</label>
+                                <input type="number" class="form-control" name="HibeTutari" id="HibeTutari" placeholder="---" @* value="@Model.HibeTutari" *@ pattern="\d*" oninput="this.value = this.value.replace(/[^0-9]/g, '');" />
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-3">
+                                <input type="submit" class="btn btn-primary" value="Filtrele" />
+                            </div>
+                        </div>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- Basic Bootstrap Table -->
+<div class="container-xxl flex-grow-1 container-p-y">
+    <div class="row">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Başvuru Listele</h5>
+                <form method="post" action="/Home/ExportToExcelBasvuru">
+                    <input type="hidden" name="ProjeAdi" value="@Context.Request.Query["ProjeAdi"]" />
+                    <input type="hidden" name="BasvuranBirim" value="@Context.Request.Query["BasvuranBirim"]" />
+                    <input type="hidden" name="BasvuruYapilanProje" value="@Context.Request.Query["BasvuruYapilanProje"]" />
+                    <input type="hidden" name="BasvuruYapilanTur" value="@Context.Request.Query["BasvuruYapilanTur"]" />
+                    <input type="hidden" name="KatilimciTuru" value="@Context.Request.Query["KatilimciTuru"]" />
+                    <input type="hidden" name="BasvuruDonemi" value="@Context.Request.Query["BasvuruDonemi"]" />
+                    <input type="hidden" name="BasvuruTarih" value="@Context.Request.Query["BasvuruTarih"]" />
+                    <input type="hidden" name="BasvuruDurumu" value="@Context.Request.Query["BasvuruDurumu"]" />
+                    <input type="hidden" name="AciklamaTarihi" value="@Context.Request.Query["AciklamaTarihi"]" />
+                    <input type="hidden" name="HibeTutari" value="@Context.Request.Query["HibeTutari"]" />
+                    <button type="submit" class="btn btn-success">Excel'e Aktar</button>
+                </form>
+            </div>
+            <div class="table-responsive text-nowrap">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>PROJE ADI</th>
+                            <th>BASVURAN BIRIM</th>
+                            <th>BASVURU YAPILAN PROJE</th>
+                            <th>BASVURU YAPILAN TUR</th>
+                            <th>KATILIMCI TURU</th>
+                            <th>BASVURU DONEMI</th>
+                            <th>BASVURU TARIHI</th>
+                            <th>BASVURU DURUMU</th>
+                            <th>ACIKLAMA TARIHI</th>
+                            <th>HIBE TUTARI</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-border-bottom-0">
+                        @foreach (var basvuru in Model.BasvuruListesi)
+                        {
+                            <tr>
+                                <td>@(basvuru.Id)</td>
+                                <td>@(basvuru.ProjeAdi)</td>
+                                <td>@(basvuru.BasvuranBirim)</td>
+                                <td>@(basvuru.BasvuruYapilanProje)</td>
+                                <td>@(basvuru.BasvuruYapilanTur)</td>
+                                <td>@(basvuru.KatilimciTuru)</td>
+                                <td>@(basvuru.BasvuruDonemi)</td>
+                                <td>@(basvuru.BasvuruTarih)</td>
+                                <td>@(basvuru.BasvuruDurumu)</td>
+                                <td>@(basvuru.AciklamaTarihi)</td>
+                                <td>@(basvuru.HibeTutari)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Core JS -->
+<!-- build:js assets/vendor/js/core.js -->
+<script src="../assets/vendor/libs/jquery/jquery.js"></script>
+<script src="../assets/vendor/libs/popper/popper.js"></script>
+<script src="../assets/vendor/js/bootstrap.js"></script>
+<script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+
+<script src="../assets/vendor/js/menu.js"></script>
+<!-- endbuild -->
+<!-- Vendors JS -->
+<script src="../assets/vendor/libs/apex-charts/apexcharts.js"></script>
+
+<!-- Main JS -->
+<script src="../assets/js/main.js"></script>
+
+<!-- Page JS -->
+<script src="../assets/js/dashboards-analytics.js"></script>

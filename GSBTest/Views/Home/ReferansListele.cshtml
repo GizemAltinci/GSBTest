@@ -1,0 +1,132 @@
+﻿
+@model APPModel
+
+
+<div class="container-xxl flex-grow-1 container-p-y">
+	<div class="row">
+		<div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Kullanıcı İşlemleri /</span> Kullanıcı Listele</h4>
+                <form method="post" asp-action="ExportToExcelReferans" asp-controller="Home">
+                    <button type="submit" class="btn btn-success">Excel'e Aktar</button>
+                </form>
+            </div>
+			<div class="table-responsive text-nowrap">
+				<table class="table">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Tip</th>
+                            <th>Alttipi</th>
+                            
+                                    
+                            <th>****silinme durumu***</th>
+                                    
+                        </tr>
+                    </thead>
+                    <tbody class="table-border-bottom-0">
+                        @foreach (var referans in ViewBag.Referanslar as List<TblRef>)
+                        {
+                            <tr>
+                                <td>@(referans.Id)</td>
+                                <td>@(referans.Tip)</td>
+                                <td>@(referans.Alttip)</td>
+                               <td>
+                                    <!-- Icon Dropdown--> 
+                                    @* <div class="col-lg-3 col-sm-6 col-12">
+                                        <div class="demo-inline-spacing">
+                                            <div class="btn-group">
+                                                <button type="button"
+                                                        class="btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow"
+                                                        data-bs-toggle="dropdown"
+                                                        aria-expanded="false">
+                                                    <i class="bx bx-dots-vertical-rounded"></i>
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-menu-end">
+                                                    <li><a class="dropdown-item" href="javascript:void(0);">Sil</a></li>
+                                                    
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div> *@
+                                    
+                                        <div class="dropdown">
+                                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="bx bx-dots-vertical-rounded"></i>
+                                            </button>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="javascript:void(0);" onclick="deleteReference(@referans.Id)">
+                                                    <i class="bx bx-trash me-1"></i> Referansı sil
+                                                </a>
+                                            </div>
+                                        </div>
+                                    
+                                    <!--/ Icon Dropdown -->
+
+                                </td>
+
+                                
+                            </tr>
+                        }
+                    </tbody>
+                  
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+ <script>
+    function deleteReference(id) {
+        if (confirm('Are you sure you want to delete this reference?')) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("DeleteReference", "Home")',
+                data: { id: id },
+                success: function (response) {
+                    if (response.success) {
+                        alert(response.message);
+                        location.reload(); // Reload the page to reflect changes
+                    } else {
+                        alert(response.message);
+                    }
+                },
+                error: function () {
+                    alert("An error occurred. Please try again.");
+                }
+            });
+        }
+    }
+</script> 
+
+
+
+
+
+<!-- Core JS -->
+<!-- build:js assets/vendor/js/core.js -->
+<script src="../assets/vendor/libs/jquery/jquery.js"></script>
+<script src="../assets/vendor/libs/popper/popper.js"></script>
+<script src="../assets/vendor/js/bootstrap.js"></script>
+<script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+
+<script src="../assets/vendor/js/menu.js"></script>
+<!-- endbuild -->
+<!-- Vendors JS -->
+<script src="../assets/vendor/libs/apex-charts/apexcharts.js"></script>
+
+<!-- Main JS -->
+<script src="../assets/js/main.js"></script>
+
+<!-- Page JS -->
+<script src="../assets/js/dashboards-analytics.js"></script>
+
+
+
+
+
+
+
+					
+
+

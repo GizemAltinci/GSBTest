@@ -1,0 +1,197 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@{
+    var isAdmin = HttpContextAccessor.HttpContext?.Session.GetInt32("IsAdmin");
+}
+
+
+
+@if (isAdmin == 1)
+                            {
+<!-- Bordered Table -->
+<div class="container-xxl flex-grow-1 container-p-y">
+    <div class="row">
+        <div class="card mb-4">
+            <h4 class="fw-bold py-3 mb-4">
+                <span class="text-muted fw-light">Admin / </span>Yetkilendirme
+            </h4>
+            <div class="card-body">
+                <div class="table-responsive text-nowrap">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Kullanıcı Adı</th>
+                                <th>Başvuru İşlemleri</th>
+                                <th>Referans İşlemleri</th>
+                                <th>Kullanıcı İşlemleri</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var user in Model)
+                            {
+                                <tr>
+                                    <td>@user.KullaniciAdi</td>
+
+                                    <!-- BAŞVURU İŞLEMLERİ YETKİSİ -->
+                                    <td class="text-center align-middle">
+                                        <div class="d-flex align-items-center">
+                                            <span class="badge @((user.YetkiBasvuruIslemleri == true ? "bg-success" : "bg-danger")) me-2">
+                                                @((user.YetkiBasvuruIslemleri == true ? "Yetkili" : "Yetkisiz"))
+                                            </span>
+                                            <div class="dropdown">
+                                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <i class="bx bx-dots-vertical-rounded"></i>
+                                                </button>
+                                                <div class="dropdown-menu">
+                                                    @if (user.YetkiBasvuruIslemleri == true)
+                                                    {
+                                                        <a class="dropdown-item" href="javascript:void(0);" onclick="ChangePermission(@user.Id, 'Basvuru', false)">
+                                                            <i class="bx bx-toggle-left me-1"></i> Yetkisini Kaldır
+                                                        </a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a class="dropdown-item" href="javascript:void(0);" onclick="ChangePermission(@user.Id, 'Basvuru', true)">
+                                                            <i class="bx bx-toggle-right me-1"></i> Yetki Ver
+                                                        </a>
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <!-- REFERANS İŞLEMLERİ YETKİSİ -->
+                                    <td class="text-center align-middle">
+                                        <div class="d-flex align-items-center">
+                                            <span class="badge @((user.YetkiReferansIslemleri == true ? "bg-success" : "bg-danger")) me-2">
+                                                @((user.YetkiReferansIslemleri == true ? "Yetkili" : "Yetkisiz"))
+                                            </span>
+                                            <div class="dropdown">
+                                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <i class="bx bx-dots-vertical-rounded"></i>
+                                                </button>
+                                                <div class="dropdown-menu">
+                                                    @if (user.YetkiReferansIslemleri == true)
+                                                    {
+                                                        <a class="dropdown-item" href="javascript:void(0);" onclick="ChangePermission(@user.Id, 'Referans', false)">
+                                                            <i class="bx bx-toggle-left me-1"></i> Yetkisini Kaldır
+                                                        </a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a class="dropdown-item" href="javascript:void(0);" onclick="ChangePermission(@user.Id, 'Referans', true)">
+                                                            <i class="bx bx-toggle-right me-1"></i> Yetki Ver
+                                                        </a>
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <!-- KULLANICI İŞLEMLERİ YETKİSİ -->
+                                    <td class="text-center align-middle">
+                                        <div class="d-flex align-items-center">
+                                            <span class="badge @((user.YetkiKullaniciIslemleri == true ? "bg-success" : "bg-danger")) me-2">
+                                                @((user.YetkiKullaniciIslemleri == true ? "Yetkili" : "Yetkisiz"))
+                                            </span>
+                                            <div class="dropdown">
+                                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <i class="bx bx-dots-vertical-rounded"></i>
+                                                </button>
+                                                <div class="dropdown-menu">
+                                                    @if (user.YetkiKullaniciIslemleri == true)
+                                                    {
+                                                        <a class="dropdown-item" href="javascript:void(0);" onclick="ChangePermission(@user.Id, 'Kullanici', false)">
+                                                            <i class="bx bx-toggle-left me-1"></i> Yetkisini Kaldır
+                                                        </a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a class="dropdown-item" href="javascript:void(0);" onclick="ChangePermission(@user.Id, 'Kullanici', true)">
+                                                            <i class="bx bx-toggle-right me-1"></i> Yetki Ver
+                                                        </a>
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--/ Bordered Table -->
+
+<script>
+    function ChangePermission(userId, permissionType, isChecked) {
+        $.ajax({
+            url: '@Url.Action("ChangePermission", "Admin")',
+            type: 'POST',
+            data: {
+                userId: userId,
+                permissionType: permissionType,
+                isChecked: isChecked
+            },
+            success: function (response) {
+                alert('Yetki başarıyla güncellendi');
+                location.reload(); // Sayfayı yenileyerek değişiklikleri yansıtma
+            },
+            error: function () {
+                alert('Yetki güncellenemedi');
+            }
+        });
+    }
+</script>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Core JS -->
+<!-- build:js assets/vendor/js/core.js -->
+<script src="../assets/vendor/libs/jquery/jquery.js"></script>
+<script src="../assets/vendor/libs/popper/popper.js"></script>
+<script src="../assets/vendor/js/bootstrap.js"></script>
+<script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+
+<script src="../assets/vendor/js/menu.js"></script>
+<!-- endbuild -->
+<!-- Vendors JS -->
+<script src="../assets/vendor/libs/apex-charts/apexcharts.js"></script>
+
+<!-- Main JS -->
+<script src="../assets/js/main.js"></script>
+
+<!-- Page JS -->
+<script src="../assets/js/dashboards-analytics.js"></script>
+
+
+
+
+
+
+

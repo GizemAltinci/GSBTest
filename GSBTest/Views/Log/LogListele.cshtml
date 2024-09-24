@@ -1,0 +1,69 @@
+﻿@model List<GSBTest.Models.TblLog>
+
+<!-- Log Tablosu -->
+<div class="container-xxl flex-grow-1 container-p-y">
+    <div class="row">
+        <div class="card">
+            <h4 class="fw-bold py-3 mb-4"> Log Listele</h4>
+            <div class="table-responsive text-nowrap mt-3">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Kullanıcı ID</th>
+                            <th>DateTime</th>
+                            <th>Log Tipi</th>
+                            <th>Metod Adı</th>
+                            <th>Hata</th>
+                            <th>Hata Mesajı</th>
+                            <th>DateTime</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-border-bottom-0">
+                        @foreach (var log in Model)
+                        {
+                            <tr>
+                                <td>@log.UserId</td>
+                                <td>@log.DateTime</td>
+                                <td>@log.LogType</td>
+                                <td>@log.MethodName</td>
+                                <td>@log.Hata</td>
+                                <td>@log.ExceptionMessage</td>
+                                
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+
+
+
+
+
+@* <table>
+    <thead>
+        <tr>
+			<th>Kullanıcı ID</th>
+			<th>Log Tipi</th>
+            <th>Metod Adı</th>
+            <th>Hata Mesajı</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var log in Model)
+        {
+            <tr>
+                <td>@log.UserId</td>              
+                <td>@log.LogType</td>
+                <td>@log.MethodName</td>
+                <td>@log.ExceptionMessage</td>
+                
+            </tr>
+        }
+    </tbody>
+</table> *@
+
+
+
+

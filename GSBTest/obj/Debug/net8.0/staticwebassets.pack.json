@@ -2,7 +2,7 @@
   "Files": [
     {
       "Id": "C:\\Users\\gizem\\source\\repos\\GSBTest\\GSBTest\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\GSBTest.bundle.scp.css",
-      "PackagePath": "staticwebassets\\GSBTest.bundle.scp.css"
+      "PackagePath": "staticwebassets\\GSBTest.sb37dd810y.bundle.scp.css"
     },
     {
       "Id": "C:\\Users\\gizem\\source\\repos\\GSBTest\\GSBTest\\wwwroot\\assets\\css\\demo.css",
@@ -715,6 +715,10 @@
     {
       "Id": "C:\\Users\\gizem\\source\\repos\\GSBTest\\GSBTest\\wwwroot\\wwwroot.zip",
       "PackagePath": "staticwebassets\\wwwroot.zip"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.GSBTest.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.GSBTest.Microsoft.AspNetCore.StaticWebAssets.props",

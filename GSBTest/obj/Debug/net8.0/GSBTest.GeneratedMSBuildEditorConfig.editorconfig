@@ -17,6 +17,8 @@ build_property.SupportLocalizedComponentNames =
 build_property.GenerateRazorMetadataSourceChecksumAttributes = true
 build_property.MSBuildProjectDirectory = C:\Users\gizem\source\repos\GSBTest\GSBTest
 build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 8.0
+build_property.EnableCodeStyleSeverity = 
 
 [C:/Users/gizem/source/repos/GSBTest/GSBTest/Views/Account/AccessDenied.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxBY2Nlc3NEZW5pZWQuY3NodG1s

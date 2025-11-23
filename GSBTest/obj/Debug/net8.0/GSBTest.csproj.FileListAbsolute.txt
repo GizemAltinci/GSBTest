@@ -449,3 +449,8 @@ C:\Users\gizem\source\repos\GSBTest\GSBTest\bin\Debug\net8.0\EPPlus.System.Drawi
 C:\Users\gizem\source\repos\GSBTest\GSBTest\bin\Debug\net8.0\Microsoft.IO.RecyclableMemoryStream.dll
 C:\Users\gizem\source\repos\GSBTest\GSBTest\bin\Debug\net8.0\runtimes\win\lib\net7.0\Microsoft.Win32.SystemEvents.dll
 C:\Users\gizem\source\repos\GSBTest\GSBTest\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Drawing.Common.dll
+C:\Users\gizem\source\repos\GSBTest\GSBTest\bin\Debug\net8.0\GSBTest.staticwebassets.endpoints.json
+C:\Users\gizem\source\repos\GSBTest\GSBTest\obj\Debug\net8.0\GSBTest.sourcelink.json
+C:\Users\gizem\source\repos\GSBTest\GSBTest\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+C:\Users\gizem\source\repos\GSBTest\GSBTest\obj\Debug\net8.0\staticwebassets\msbuild.GSBTest.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+C:\Users\gizem\source\repos\GSBTest\GSBTest\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

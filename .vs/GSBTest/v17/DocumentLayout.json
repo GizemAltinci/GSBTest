@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\gizem\\source\\repos\\GSBTest\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{3A58BDFA-8397-45CB-8600-0CEC04D850FC}|GSBTest\\GSBTest.csproj|c:\\users\\gizem\\source\\repos\\gsbtest\\gsbtest\\controllers\\logcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3A58BDFA-8397-45CB-8600-0CEC04D850FC}|GSBTest\\GSBTest.csproj|solutionrelative:gsbtest\\controllers\\logcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{3A58BDFA-8397-45CB-8600-0CEC04D850FC}|GSBTest\\GSBTest.csproj|c:\\users\\gizem\\source\\repos\\gsbtest\\gsbtest\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3A58BDFA-8397-45CB-8600-0CEC04D850FC}|GSBTest\\GSBTest.csproj|solutionrelative:gsbtest\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -21,8 +25,25 @@
           "SelectedChildIndex": 1,
           "Children": [
             {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "LogController.cs",
+              "DocumentMoniker": "C:\\Users\\gizem\\source\\repos\\GSBTest\\GSBTest\\Controllers\\LogController.cs",
+              "RelativeDocumentMoniker": "GSBTest\\Controllers\\LogController.cs",
+              "ToolTip": "C:\\Users\\gizem\\source\\repos\\GSBTest\\GSBTest\\Controllers\\LogController.cs",
+              "RelativeToolTip": "GSBTest\\Controllers\\LogController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-23T18:26:44.473Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "KullaniciListele.cshtml",
               "DocumentMoniker": "C:\\Users\\gizem\\source\\repos\\GSBTest\\GSBTest\\Views\\Home\\KullaniciListele.cshtml",
               "RelativeDocumentMoniker": "GSBTest\\Views\\Home\\KullaniciListele.cshtml",
@@ -30,18 +51,17 @@
               "RelativeToolTip": "GSBTest\\Views\\Home\\KullaniciListele.cshtml",
               "ViewState": "AQIAAB4AAAAAAAAAAAAAAC0AAAASAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-09-18T13:34:38.605Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-18T13:34:38.605Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "HomeController.cs",
               "DocumentMoniker": "C:\\Users\\gizem\\source\\repos\\GSBTest\\GSBTest\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "GSBTest\\Controllers\\HomeController.cs",
               "ToolTip": "C:\\Users\\gizem\\source\\repos\\GSBTest\\GSBTest\\Controllers\\HomeController.cs",
               "RelativeToolTip": "GSBTest\\Controllers\\HomeController.cs",
-              "ViewState": "AQIAACkBAAAAAAAAAAAwwDUBAAAtAAAA",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADUBAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-18T13:28:29.707Z",
               "EditorCaption": ""

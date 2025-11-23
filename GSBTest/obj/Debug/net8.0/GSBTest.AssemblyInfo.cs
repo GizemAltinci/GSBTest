@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GSBTest")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d4ca8371435e0b0fbb0e001a09d41ac205ffa987")]
 [assembly: System.Reflection.AssemblyProductAttribute("GSBTest")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GSBTest")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
